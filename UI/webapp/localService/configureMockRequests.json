@@ -1,0 +1,17 @@
+[
+	{
+		"method": "POST",
+		"path": "/entitlements(.*)",
+		"responseCode": "200",
+		"responseJSON": "EntitySet"
+	},
+	{
+		"method": "GET",
+		"path": "/rest/api/entity(.*)",
+		"responseCode": "200",
+		"responseJSON": {
+			"id": "test",
+			"description": "Mock Rest API"
+		}
+	}
+]

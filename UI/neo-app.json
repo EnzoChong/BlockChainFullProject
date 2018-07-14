@@ -1,0 +1,99 @@
+{
+  "welcomeFile": "/webapp/test.html",
+  "routes": [
+    {
+      "path": "/webapp/resources/sap/ems/ui",
+      "target": {
+        "type": "application",
+        "name": "ems_ui_lib",
+        "entryPath": "/src/sap/ems/ui"
+      },
+      "description": "EMS UI Lib"
+    },
+    {
+      "path": "/webapp/resources/sap/ems/ui",
+      "target": {
+        "type": "destination",
+        "name": "ems_ui_lib_dev",
+        "entryPath": "/sap/ems/ui"
+      },
+      "description": "EMS UI Lib"
+    },    
+    {
+      "path": "/resources",
+      "target": {
+        "type": "application",
+        "name": "sapui5preview",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "application",
+        "name": "sapui5preview",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/dest/srv/odata/northwind",
+      "target": {
+        "type": "destination",
+        "name": "northwind"
+      },
+      "description": "Northwind oData service"
+    }, {
+		"path": "/dest/srv/rest/blockchain",
+		"target": {
+			"type": "destination",
+			"name": "ems_backend_service_blockchain_demo"
+		},
+		"description": "ems_odata_etl_repo back_end service"
+	},
+    {
+      "path": "/dest/srv/rest/xxx",
+      "target": {
+        "type": "destination",
+        "name": "project_srv_name_dev"
+      },
+      "description": "Backend Service XXX"
+    }
+  ],
+  "sendWelcomeFileRedirect": true,
+  "cacheControl": [
+    {
+      "directive": "private",
+      "maxAge": 0,
+      "path": "**.html"
+    },
+    {
+      "directive": "private",
+      "maxAge": 0,
+      "path": "sap-ui-cachebuster-info.json"
+    },
+    {
+      "directive": "public",
+      "maxAge": 0
+    }
+  ]
+}

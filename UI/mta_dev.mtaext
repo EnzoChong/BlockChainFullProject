@@ -1,0 +1,11 @@
+_schema-version: '3.1'
+ID: com.sap.ems.ui.app.blockchain.dev
+extends: com.sap.ems.ui.app.blockchain
+parameters:
+  space: -dev
+
+modules:
+ - name: com.sap.ems.ui.app.blockchain
+   parameters:
+     hosts:
+       - com-sap-ems-ui-app-blockchain${space}

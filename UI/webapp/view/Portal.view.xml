@@ -1,0 +1,36 @@
+<mvc:View controllerName="sap.ems.ui.app.blockchain.controller.Portal" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false" enableScrolling="false">
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="New Entitlment" subheader=""
+			press="onNewEntitlementPress">
+			<tileContent>
+				<TileContent >
+					<content>
+						<ImageContent src="sap-icon://add"/>
+					</content>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="EMS BlockChain" subheader=""
+			press="onBlockChainPress">
+			<tileContent>
+				<TileContent >
+					<content>
+						<ImageContent src="sap-icon://home-share"/>
+					</content>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Customer Application" subheader=""
+			press="onCustomerAppPress">
+			<tileContent>
+				<TileContent>
+					<content>
+						<ImageContent
+							src="/test-resources/sap/m/demokit/sample/GenericTileAsLaunchTile/images/SAPLogoLargeTile_28px_height.png"></ImageContent>
+					</content>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+	</Page>
+</mvc:View>

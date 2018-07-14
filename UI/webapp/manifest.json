@@ -1,0 +1,197 @@
+{
+	"_version": "1.5.0",
+	"sap.app": {
+		"id": "com.sap.ems.ui.app.blockchain",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"ach": "ach",
+		"resources": "resources.json",
+		"dataSources": {
+			"oDataNorthwind": {
+				"uri": "/dest/srv/odata/northwind/V2/Northwind/Northwind.svc/",
+				"type": "OData"
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"fullWidth": false,
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"componentName": "sap.ems.ui.app.blockchain",
+		"handleValidation": true,
+		"rootView": {
+			"viewName": "sap.ems.ui.app.blockchain.view.App",
+			"type": "XML"
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"viewPath": "sap.ems.ui.app.blockchain.view",
+				"controlId": "app",
+				"controlAggregation": "pages",
+				"transition": "slide",
+				"bypassed": {
+					"target": "notFoundView"
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "",
+					"name": "orders",
+					"target": "portalView",
+					"titleTarget": "portalView"
+				},
+				{
+					"pattern": "customer",
+					"name": "customer",
+					"target": "customerView",
+					"titleTarget": "customerView"
+				},
+				{
+					"pattern": "customerlist",
+					"name": "customerlist",
+					"target": "customerListView",
+					"titleTarget": "customerListView"
+				},
+				{
+					"pattern": "display",
+					"name": "display",
+					"target": "orderListView",
+					"titleTarget": "orderListView"
+				},
+				{
+					"pattern": "newentitlement",
+					"name": "newentitlement",
+					"target": "newentitlementView",
+					"titleTarget": "newentitlementView"
+				},
+				{
+					"pattern": "orders/{orderId}",
+					"name": "order",
+					"target": "orderDetailView",
+					"titleTarget": "orderDetailView"
+				},
+				{
+					"pattern": "edit/{orderId}",
+					"name": "orderEdit",
+					"target": "orderEditView",
+					"titleTarget": "orderEditView"
+				},
+				{
+					"pattern": "copy/{orderId}",
+					"name": "orderCopy",
+					"target": "orderCreationView",
+					"titleTarget": "orderCreationView"
+				},
+				{
+					"pattern": "new",
+					"name": "orderCreation",
+					"target": "orderCreationView",
+					"titleTarget": "orderCreationView"
+				}
+			],
+			"targets": {
+				"orderListView": {
+					"viewName": "List",
+					"title": "Order List"
+				},
+				"customerView": {
+					"viewName": "Customer",
+					"title": "Customer"
+				},
+				"customerListView": {
+					"viewName": "CustomerList",
+					"title": "CustomerList"
+				},
+				"portalView": {
+					"viewName": "Portal",
+					"title": "Portal"
+				},
+				"newentitlementView": {
+					"viewName": "NewEntitlement",
+					"title": "new entitlement View"
+				},
+				"orderCreationView": {
+					"viewName": "Modify",
+					"title": "Order Creation"
+				},
+				"orderEditView": {
+					"viewName": "Modify",
+					"title": "Order Edit"
+				},
+				"notFound": {
+					"viewName": "NotFoundView",
+					"title": "Not found"
+				}
+			}
+		},
+		"dependencies": {
+			"minUI5Version": "1.48.5",
+			"libs": {
+				"sap.ui.core": {},
+				"sap.m": {},
+				"sap.ushell": {},
+				"sap.ui.layout": {},
+				"sap.ui.unified": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {},
+				"sap.f": {},
+				"sap.uxap": {},
+				"sap.ems.ui": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "sap.ems.ui.app.blockchain.i18n.i18n"
+				}
+			},
+			"": {
+				"preload": true,
+				"dataSource": "oDataNorthwind"
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			],
+			"js": []
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

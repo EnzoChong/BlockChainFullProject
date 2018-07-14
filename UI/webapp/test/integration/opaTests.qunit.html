@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Opa tests for App Title</title>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge' />
+		<meta charset="UTF-8">
+
+		<script id="sap-ui-bootstrap"
+				src="/resources/sap-ui-core.js"
+				data-sap-ui-theme='sap_belize'
+				data-sap-ui-language="en"
+				data-sap-ui-libs='sap.m'
+				data-sap-ui-animation="false"
+				data-sap-ui-compatVersion="edge"
+				data-sap-ui-preload="async"
+				data-sap-ui-resourceroots='{
+					"sap.ems.ui.app.blockchain": "../../",
+					"test.integration": "./",
+					"sap.ems.ui.app.blockchain.test.arrangement.Arrangement": "./arrangement/component/Arrangement",
+	                "sap.ems.ui.app.blockchain.app" : "../flpSandboxMockServer"
+				}'>
+		</script>
+		<script>
+			jQuery.sap.require("sap.ui.thirdparty.qunit");
+			jQuery.sap.registerModulePath("sap.ems.ui", "/webapp/resources/sap/ems/ui");
+			if (window.blanket) {
+				window.blanket.options("sap-ui-cover-only", "sap/ems/ui/app/blockchain/");
+				window.blanket.options("sap-ui-cover-never", "[sap/ems/ui/app/blockchain/lib/, sap/ems/ui/app/blockchain/test/, sap/ems/ui/app/blockchain/localService/]");
+			}
+			sap.ui.getCore().attachInit(function () {
+				"use strict";
+				sap.ui.require([
+					"sap/ems/ui/app/blockchain/localService/mockserver",
+					"test/integration/configureOpa",
+					"test/integration/AllJourneys"
+				], function (mockserver) {
+					mockserver.init();
+					QUnit.config.autostart = false;
+					QUnit.start();
+				});
+			});	
+		</script>
+
+	</head>
+	<body>
+		<div id="qunit"></div>
+		<div id="qunit-fixture"></div>
+	</body>
+</html>

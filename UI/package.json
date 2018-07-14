@@ -1,0 +1,33 @@
+{
+    "name": "ems-ui-app-blockchain",
+    "version": "1.0.0",
+    "license": "SAP",
+    "description": "App Tile",
+    "scripts": {
+        "start": "node node_modules/@sap/approuter/approuter.js",
+        "opa": "grunt coverage",
+        "lint": "grunt lint:ci"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github.wdf.sap.corp:Entitlement/ems-ui-app-blockchain.git"
+    },
+    "author": "SAP CSC CD",
+    "dependencies": {
+        "@sap/approuter": "latest"
+    },
+    "devDependencies": {
+        "ems-ui-lib": "git://github.wdf.sap.corp/Entitlement/ems-ui-lib.git#master",
+        "eslint-config-standard": "^11.0.0-beta.0",
+        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-node": "^5.2.1",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "grunt": "^1.0.1",
+        "grunt-ems": "latest",
+        "whitesource": "latest"
+    },
+    "engines": {
+        "node": ">=6.0.0"
+    }
+}

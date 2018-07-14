@@ -1,0 +1,42 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="sap.ems.ui.app.blockchain.controller.NewEntitlement" xmlns="sap.m"
+	xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page showHeader="false" enableScrolling="false">
+		<VBox class="sapUiSmallMargin">
+			<f:SimpleForm id="SimpleFormChange354" editable="true" layout="ResponsiveGridLayout" title="New Entitlement"
+				labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4"
+				emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+				<f:content>
+					<Label text="ID"/>
+					<Input class="validate" required="true"
+						value="{path:'view>/id', type: 'sap.ems.ui.app.blockchain.model.customTypes.customString', constraints: {minLength:1, maxLength: 100, text:{minLength:'M000001', maxLength:'MSG_MODEL_NAME_EXCEED_MAXLENGTH'}}}"
+						maxLength="100"/>
+					<Label text="Quantity" required="true"/>
+					<Input class="validate" value="{path:'view>/quantity', type: 'sap.ui.model.type.Float', formatOptions: {maxFractionDigits: 2}}"
+						required="true"></Input>
+					<Label text="Valid From"  required="true"/>
+					<DatePicker placeholder=""
+						value="{path: 'view>/validFrom', type: 'sap.ui.model.type.Date', constraints:{nullable: false}, formatOptions: {source:{pattern: 'yyyy-MM-dd'}, pattern: 'yyyy-MM-dd'}}"
+						width="100%"/>
+					<Label text="Valid To"  required="true"/>
+					<DatePicker placeholder=""
+						value="{path: 'view>/validTo', type: 'sap.ui.model.type.Date', constraints:{nullable: false}, formatOptions: { source:{pattern: 'yyyy-MM-dd'},pattern: 'yyyy-MM-dd'}}"
+						width="100%"/>
+					<Label text="Description"/>
+					<Input class="validate" value="{path:'view>/description', type: 'sap.ems.ui.app.blockchain.model.customTypes.customString',  constraints: {minLength:1, maxLength: 100, text:{minLength:'M000001', maxLength:'MSG_MODEL_NAME_EXCEED_MAXLENGTH'}}}"
+						required="true"></Input>
+				</f:content>
+			</f:SimpleForm>
+		</VBox>
+		<footer>
+			<OverflowToolbar>
+				<Button id="idBtnMsgPopover" icon="sap-icon://message-popup" text="{=${oMessageModel>/}.length}" visible="{=${oMessageModel>/}.length>0}"
+					type="Emphasized" press="onMessagePopoverPress"/>
+				<ToolbarSpacer/>
+				<!--<Button id="validate" text="Validation" type="Emphasized"  press="handleValidatePress"/>-->
+				<Button id="saveAndNew" text="Save and New" type="Emphasized" press="handleSaveNewPress"/>
+				<Button id="save" text="Save" type="Emphasized" press="handleSavePress"/>
+				<Button id="cancel" text="{i18n>CTRL_TOOLBAR_BUTTON_CANCEL}" press="handleCancelPress"/>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

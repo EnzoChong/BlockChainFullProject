@@ -1,0 +1,33 @@
+<mvc:View controllerName="sap.ems.ui.app.blockchain.controller.Modify" 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:uxap="sap.uxap" 
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<uxap:ObjectPageLayout showFooter="true">
+		<uxap:headerTitle>
+			<uxap:ObjectPageHeader objectTitle="{/OrderID}" objectSubtitle="{/ShipName}"/>
+		</uxap:headerTitle>
+		<uxap:sections>
+			<uxap:ObjectPageSection showTitle="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection mode="Expanded">
+						<uxap:blocks>
+							<VBox>
+								<core:Fragment fragmentName="sap.ems.ui.app.blockchain.view.ModifyFormGeneral" type="XML"/>
+							</VBox>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+		</uxap:sections>
+		<uxap:footer>
+			<OverflowToolbar >
+				<Button id="idBtnMsgPopover" icon="sap-icon://message-popup" text="{=${messageModel>/}.length}" visible="{=${messageModel>/}.length>0}" type="Emphasized" press="onMessagePopoverPress"/>
+				<ToolbarSpacer/>
+				<Button text="{i18n>CTRL_TOOLBAR_BUTTON_SAVE}" press="onSave"/>
+				<Button text="{i18n>CTRL_TOOLBAR_BUTTON_CANCEL}" press="onCancel"/>
+			</OverflowToolbar>
+		</uxap:footer>
+	</uxap:ObjectPageLayout>
+</mvc:View>

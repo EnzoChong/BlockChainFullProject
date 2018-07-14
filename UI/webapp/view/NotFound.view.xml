@@ -1,0 +1,11 @@
+<mvc:View controllerName="sap.ems.ui.app.blockchain.controller.NotFound" 
+	xmlns:core="sap.ui.core" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns="sap.m" 
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="{i18n>NOT_FOUND}">
+		<content>
+			<MessagePage showHeader="false" text="{i18n>NOT_FOUND}" description=""/>
+		</content>
+	</Page>
+</mvc:View>

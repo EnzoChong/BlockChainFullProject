@@ -1,0 +1,26 @@
+######################################################################
+###  Deployment scenario:       Cloud Foundry
+###  UI5 consumption scenario:  from UI5 service on hana.ondemand.com
+######################################################################
+
+ID: com.sap.ems.ui.app.blockchain
+_schema-version: '2.1'
+version: 0.0.1
+parameters:
+  sapui5_url: https://sapui5.hana.ondemand.com
+  
+modules:
+  - name: com.sap.ems.ui.app.blockchain
+    type: javascript.nodejs
+    path: ./
+    parameters:
+      memory: 128M
+    build-parameters:
+      builder: grunt
+      grunt-opts: 
+        - default
+      ignore: [".*/"]
+    properties:
+      destinations:
+        - name: sapui5
+          url: ${sapui5_url}

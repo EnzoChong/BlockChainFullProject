@@ -1,0 +1,42 @@
+<mvc:View controllerName="sap.ems.ui.app.blockchain.controller.List" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core" xmlns:t="sap.ui.table">
+	<f:DynamicPage headerExpanded="true" showFooter="true" fitContent="true">
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>CTRL_MON_LIST_TITLE}"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader>
+				<f:content>
+					<fb:FilterBar id="idFilter" showClearOnFB="true" showFilterConfiguration="false" clear="onFilterClear" search="onSearch"
+						filterBarExpanded="true" expandAdvancedArea="true" useToolbar="false">
+						<fb:filterItems>
+							<fb:FilterItem label="Company" name="filterForDirection" visibleInFilterBar="true">
+								<fb:control>
+									<Select forceSelection="false" id="idCompany" change="onSelectType" items="{ path:'/companies', sorter: {path: 'text'}}">
+										<core:Item key="{key}" text="{ path:'text'}"/>
+									</Select>
+								</fb:control>
+							</fb:FilterItem>
+						</fb:filterItems>
+					</fb:FilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<core:Fragment fragmentName="sap.ems.ui.app.blockchain.view.ListTable" type="XML"/>
+		</f:content>
+		<f:footer>
+			<OverflowToolbar>
+				<Button id="idBtnMsgPopover" icon="sap-icon://message-popup" text="{=${oMessageModel>/}.length}" visible="{=${oMessageModel>/}.length>0}"
+					type="Emphasized" press="onMessagePopoverPress"/>
+				<ToolbarSpacer/>
+				<Button text="{i18n>PUBLISH_BUTTON_TEXT}" press="onPublish" enabled="{view>/ENABLED_PUBLISH}" type="Transparent"></Button>
+				<Button text="{i18n>SPLIT_BUTTON_TEXT}" press="onTransaction" enabled="{view>/ENABLED_SPLIT}" type="Transparent"></Button>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

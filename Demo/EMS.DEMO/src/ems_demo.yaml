@@ -1,0 +1,216 @@
+swagger: "2.0"
+
+info:
+  description: "Shows the integration from blockchain"
+  version: "1.0"
+  title: "EMS Block Chain Demo!"
+
+consumes:
+  - application/x-www-form-urlencoded
+
+paths:
+  /user/search/{name}:
+    get:
+      operationId: searchUser
+      parameters:
+      - name: name
+        in: path
+        type: string
+        required: true
+      responses:
+        200:
+          description: OK
+        500:
+          description: Failed
+
+  /entitlement/{GUID}:
+    get:
+      operationId: readEntitlement
+      parameters:
+      - name: GUID
+        in: path
+        type: string
+        required: true
+      responses:
+        200:
+          description: OK
+        500:
+          description: Failed
+  /createEntitlement/:
+    post:
+      operationId: createEntitlement
+      parameters:
+      - name: guid
+        in: formData
+        type: string
+      - name: entitlementno
+        in: formData
+        type: string
+      - name: quantity
+        in: formData
+        type: string
+      - name: validFrom
+        in: formData
+        type: string
+      - name: validTo
+        in: formData
+        type: string
+      - name: status
+        in: formData
+        type: string
+      - name: customerID
+        in: formData
+        type: string
+      responses:
+        200:
+          description: OK
+        500:
+          description: Failed
+
+  /assignEntitlement/:
+    put:
+      operationId: assignEntitlement
+      parameters:
+      - name: oldEntitlementGUID
+        in: formData
+        type: string
+        required: true
+      - name: newEntitlementGUID
+        in: formData
+        type: string
+      - name: company
+        in: formData
+        type: string
+      - name: quantity
+        in: formData
+        type: string
+      - name: newEntitlementNo
+        in: formData
+        type: string
+      responses:
+        200:
+          description: OK
+        500:
+          description: Failed
+  /buyEntitlement/:
+      put:
+        operationId: buyEntitlement
+        parameters:
+        - name: oldEntitlementGUID
+          in: formData
+          type: string
+          required: true
+        - name: newEntitlementGUID
+          in: formData
+          type: string
+        - name: user
+          in: formData
+          type: string
+        - name: quantity
+          in: formData
+          type: string
+        - name: newEntitlementNo
+          in: formData
+          type: string
+        responses:
+          200:
+            description: OK
+          500:
+            description: Failed
+
+  /user/{email}:
+      get:
+        operationId: readUser
+        parameters:
+        - name: email
+          in: path
+          type: string
+          required: true
+        responses:
+          200:
+            description: OK
+          500:
+            description: Failed
+  /createUser/:
+      post:
+        operationId: createUser
+        parameters:
+        - name: firstName
+          in: formData
+          type: string
+        - name: lastName
+          in: formData
+          type: string
+        - name: email
+          in: formData
+          type: string
+        responses:
+          200:
+            description: OK
+          500:
+            description: Failed
+  /entitlement/searchForCompany/{companyID}:
+      get:
+        operationId: searchEntitlementForCompany
+        parameters:
+        - name: companyID
+          in: path
+          type: string
+          required: true
+        responses:
+          200:
+            description: OK
+          500:
+            description: Failed
+
+
+  /entitlement/searchForUser/{userID}:
+        get:
+          operationId: searchEntitlementForUser
+          parameters:
+          - name: userID
+            in: path
+            type: string
+            required: true
+          responses:
+            200:
+              description: OK
+            500:
+              description: Failed
+
+  /entitlement/history/{id}:
+        get:
+          operationId: entitlementHistory
+          parameters:
+          - name: id
+            in: path
+            type: string
+            required: true
+          responses:
+            200:
+              description: OK
+            500:
+              description: Failed
+
+  /entitlements/:
+        get:
+          operationId: getAllEntitlements
+          responses:
+            200:
+              description: OK
+            500:
+              description: Failed
+
+  /transactions/{GUID}:
+        get:
+          operationId: getAllTransactions
+          parameters:
+          - name: GUID
+            in: path
+            type: string
+            required: true
+          responses:
+            200:
+              description: OK
+            500:
+              description: Failed
