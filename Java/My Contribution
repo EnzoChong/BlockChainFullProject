@@ -1,0 +1,66 @@
+    public boolean validateBilateralEntitlement(EntitlementDto entitlementDto)
+    {
+    	// retrieve data from database and transform it into {"id": ,"keyValue":} format
+    	String guid = entitlementDto.getEntitlementGuid();
+    	Entitlement DBEntitlement = entitlementRepository.findOne(guid);
+    	String DBId = DBEntitlement.getId();
+    	String DBKeyValue = DBEntitlement.getKeyValue();
+    	String DBJSONFormat = "{\"id\"：" + DBId +"," + "\"keyValue\"：" + DBKeyValue +"}";
+    	
+    	// retrieve data form block chain and transform it into {"id": ,"keyValue":} format
+    	List<Entitlement> entitlements = new ArrayList<>();
+        String url = host + "/entitlement/" + guid;
+
+        // TODO: we need parameters specification here
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+    	params = null;
+    	
+    	// TODO: we need to send the HTTP Request and gain Http Response here
+        HttpEntity<MultiValueMap<String, String>> httpEntity = new HttpEntity<MultiValueMap<String, String>>(params, headers);
+        ResponseEntity<String> response = restTemplate.exchange(UriComponentsBuilder.fromHttpUrl(url).build().toUri(), HttpMethod.GET, httpEntity,String.class);
+
+    	RequestEntity<Object> requestEntity = new RequestEntity<Object>(HttpMethod.GET, UriComponentsBuilder.fromHttpUrl(url).build().toUri());
+    	ResponseEntity<String> response = restTemplate.exchange(requestEntity, String.class);
+        
+        // TODO: we need to process the Response data and transform it into {"id": ,"keyValue":} format
+        if (response.getStatusCode().is2xxSuccessful())
+        {
+            String body = response.getBody().toString();
+            JSONArray objects = JSONArray.parseArray(body);
+            if (objects.size() > 0)
+            {
+                for (int i = 0; i < objects.size(); i++)
+                {
+                    JSONObject object = objects.getJSONObject(i);
+                    entitlements.add(convertEntitlementFromBlockChain(object.getJSONObject("Record")));
+                }
+            }
+            
+        }
+        Entitlement chainEntitlement = entitlements.get(0);
+        
+        // **This is a better version of generating the chainEntitlement**
+        if (response.getStatusCode().is2xxSuccessful())
+        {
+            String body = response.getBody().toString();
+            JSONArray objects = JSONArray.parseArray(body);
+            JSONObject object = objects.getJSONObject(0);
+            Entitlement chainEntitlement = convertEntitlementFromBlockChain(object.getJSONObject("Record"));
+        }
+        
+        String chainid = chainEntitlement.getId();
+    	String chainkeyValue = chainEntitlement.getKeyValue();
+    	String chainJSONFormat = "{\"id\"：" + chainid +"," + "\"keyValue\"：" + chainkeyValue +"}";
+        
+    	if(chainJSONFormat == DBJSONFormat)
+    	{
+    		return true;
+    	}
+    	else
+    	{
+    		return false;
+    	}
+        
+    }
